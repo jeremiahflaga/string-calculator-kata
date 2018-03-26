@@ -11,11 +11,9 @@ namespace StringCalculator
                 return 0;
             
             int sum = 0;
-            string[] numbers = getNumbers(input);
-
             bool hasNegatives = false;
             string exceptionMessage = "negatives not allowed:";
-            foreach (string num in numbers) {
+            foreach (string num in getNumbers(input)) {
                 int n = int.Parse(num);
                 sum += n;
 
@@ -32,13 +30,12 @@ namespace StringCalculator
         }
 
         private static string[] getNumbers(string input) {
-            string strDelimeters;
+            string strDelimeters = ",\n";
             string strNumbers;
             using (var reader = generateStreamReaderFromString(input)) {
                 if (input.StartsWith("//")) {
                     strDelimeters = reader.ReadLine();
-                } else {
-                    strDelimeters = ",\n";
+                    strDelimeters = strDelimeters.Substring(2, strDelimeters.Length - 2);
                 }
 
                 strNumbers = reader.ReadToEnd();

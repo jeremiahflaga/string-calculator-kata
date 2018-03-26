@@ -98,5 +98,12 @@ namespace StringCalculator.Tests
             var exception = Assert.Throws<Exception>(() => StringCalculator.Add("1,-2, 3, -4"));
             Assert.Equal("negatives not allowed:-2,-4,", exception.Message);
         }
+        
+        [Fact]
+        public void should_be_able_to_read_slash_as_delimeter()
+        {
+            int sum = StringCalculator.Add("//;/\n1/2/3");
+            Assert.Equal(6, sum);
+        }
     }
 }
