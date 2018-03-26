@@ -1,20 +1,57 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 
 namespace StringCalculator
 {
     public class StringCalculator
     {
-        public static int Add(string numbers) {
-            if (string.IsNullOrEmpty(numbers))
+        public static int Add(string input) {
+            if (string.IsNullOrEmpty(input))
                 return 0;
-
-            char[] splitchar = {',', '\n'};
-            string[] numArray = numbers.Split(splitchar);
+            
             int sum = 0;
-            foreach (string num in numArray)
-                sum += int.Parse(num);
+            string[] numbers = getNumbers(input);
 
-            return sum;
+            bool hasNegatives = false;
+            string exceptionMessage = "negatives not allowed:";
+            foreach (string num in numbers) {
+                int n = int.Parse(num);
+                sum += n;
+
+                if (n < 0) {
+                    hasNegatives = true;
+                    exceptionMessage += n.ToString() + ",";
+                }
+            }
+
+            if (hasNegatives)
+                throw new Exception(exceptionMessage);
+
+            return sum; 
+        }
+
+        private static string[] getNumbers(string input) {
+            string strDelimeters;
+            string strNumbers;
+            using (var reader = generateStreamReaderFromString(input)) {
+                if (input.StartsWith("//")) {
+                    strDelimeters = reader.ReadLine();
+                } else {
+                    strDelimeters = ",\n";
+                }
+
+                strNumbers = reader.ReadToEnd();
+            }
+
+            return strNumbers.Split(strDelimeters.ToCharArray());
+        }
+
+        private static StreamReader generateStreamReaderFromString(string s) {
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(s));
+            var reader = new StreamReader(stream);
+            stream.Position = 0;
+            return reader;
         }
     }
 }
