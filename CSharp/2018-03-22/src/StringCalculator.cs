@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 namespace StringCalculator
 {
@@ -11,20 +12,18 @@ namespace StringCalculator
                 return 0;
             
             int sum = 0;
-            bool hasNegatives = false;
-            string exceptionMessage = "negatives not allowed:";
+            IList<int> negativeNumbers = new List<int>();
             foreach (string num in getNumbers(input)) {
                 int n = int.Parse(num);
                 sum += n;
 
                 if (n < 0) {
-                    hasNegatives = true;
-                    exceptionMessage += n.ToString() + ",";
+                    negativeNumbers.Add(n);
                 }
             }
 
-            if (hasNegatives)
-                throw new Exception(exceptionMessage);
+            if (negativeNumbers.Count > 0)
+                throw NegativesNotAllowedException.Create(negativeNumbers);
 
             return sum; 
         }

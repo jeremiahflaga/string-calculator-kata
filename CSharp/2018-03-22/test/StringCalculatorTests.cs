@@ -88,14 +88,14 @@ namespace StringCalculator.Tests
         [Fact]
         public void should_throw_exception_if_the_number_is_negative()
         {
-            var exception = Assert.Throws<Exception>(() => StringCalculator.Add("-1"));
+            var exception = Assert.Throws<NegativesNotAllowedException>(() => StringCalculator.Add("-1"));
             Assert.Equal("negatives not allowed:-1,", exception.Message);
         }
 
         [Fact]
         public void should_throw_exception_if_one_of_the_numbers_is_negative()
         {
-            var exception = Assert.Throws<Exception>(() => StringCalculator.Add("1,-2, 3, -4"));
+            var exception = Assert.Throws<NegativesNotAllowedException>(() => StringCalculator.Add("1,-2, 3, -4"));
             Assert.Equal("negatives not allowed:-2,-4,", exception.Message);
         }
         
