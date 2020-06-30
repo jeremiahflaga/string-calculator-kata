@@ -41,5 +41,14 @@ namespace StringCalculatorKata
             Assert.Equal(1, sum);
         }
 
+        [Fact]
+        public void should_return_2_for_2_with_comma()
+        {
+            var strCalc = new StringCalculator();
+            var sum = strCalc.Add("2,");
+
+            Assert.Equal(2, sum);
+        }
+
     }
 }
