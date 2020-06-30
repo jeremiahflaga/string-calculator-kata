@@ -51,7 +51,7 @@ namespace StringCalculatorKata
         }
 
         [Fact]
-        public void should_return_sum_of_two_numbers()
+        public void should_return_sum_of_two_numbers_separated_by_commas()
         {
             var strCalc = new StringCalculator();
             var sum = strCalc.Add("1,2");
@@ -59,14 +59,22 @@ namespace StringCalculatorKata
             Assert.Equal(3, sum);
         }
 
-
         [Fact]
-        public void should_return_sum_of_three_numbers()
+        public void should_return_sum_of_three_numbers_separated_by_commas()
         {
             var strCalc = new StringCalculator();
-            var sum = strCalc.Add("1,2, 3");
+            var sum = strCalc.Add("1,2,3");
 
             Assert.Equal(6, sum);
+        }
+
+        [Fact]
+        public void should_return_sum_of_two_numbers_separated_by_newline()
+        {
+            var strCalc = new StringCalculator();
+            var sum = strCalc.Add("1\n2");
+
+            Assert.Equal(3, sum);
         }
     }
 }
