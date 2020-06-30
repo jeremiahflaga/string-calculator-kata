@@ -13,7 +13,7 @@ namespace StringCalculatorKata
             if (string.IsNullOrEmpty(input))
                 return 0;
 
-            else return 1;
+            else return int.Parse(input);
         }
     }
 }
