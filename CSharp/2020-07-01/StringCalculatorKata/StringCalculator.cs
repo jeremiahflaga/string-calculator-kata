@@ -10,7 +10,10 @@ namespace StringCalculatorKata
 
         internal int Add(string input)
         {
-            return 0;
+            if (string.IsNullOrEmpty(input))
+                return 0;
+
+            else return 1;
         }
     }
 }
