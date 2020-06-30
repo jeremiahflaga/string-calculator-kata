@@ -13,12 +13,11 @@ namespace StringCalculatorKata
             if (string.IsNullOrEmpty(input))
                 return 0;
 
-            var numbers = input.Split(",");
+            var numbers = input.Split(",", StringSplitOptions.RemoveEmptyEntries);
             var sum = 0;
             foreach (var number in numbers)
             {
-                return int.Parse(number);
-                //sum += int.Parse(number);
+                sum += int.Parse(number);
             }
             return sum;
         }
