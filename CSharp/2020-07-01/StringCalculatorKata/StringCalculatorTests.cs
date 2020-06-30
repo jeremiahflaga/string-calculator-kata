@@ -31,14 +31,5 @@ namespace StringCalculatorKata
 
             Assert.Equal(2, sum);
         }
-
-        [Fact]
-        public void should_return_sum_of_two_numbers()
-        {
-            var strCalc = new StringCalculator();
-            var sum = strCalc.Add("1,2");
-
-            Assert.Equal(2, sum);
-        }
     }
 }
