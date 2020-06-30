@@ -59,5 +59,14 @@ namespace StringCalculatorKata
             Assert.Equal(3, sum);
         }
 
+
+        [Fact]
+        public void should_return_sum_of_three_numbers()
+        {
+            var strCalc = new StringCalculator();
+            var sum = strCalc.Add("1,2, 3");
+
+            Assert.Equal(6, sum);
+        }
     }
 }
